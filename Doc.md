@@ -329,7 +329,20 @@
  *  
 ##
 ###11.解决问题能力提升
- * 
+ *
+
+##
+### 12.代码奇技淫巧
+ * 方法入口处参数合法性检测（参考guava写法）
+   *  heckArgument(hitCount >= 0);
+   
+   *  public static void checkArgument(boolean expression) {
+     if (!expression) {
+      throw new IllegalArgumentException();
+    }
+  }
+  * 好处，不用点击进入到方法内部就可以直接看到不合法参数的界限。 
+  
 ##
 ###12. 示例
   * 数据驱动产品的例子
