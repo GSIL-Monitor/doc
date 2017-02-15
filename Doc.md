@@ -172,13 +172,18 @@
 ###4.缓存（cache）
   * 本地缓存
     * 数据存储在应用代码所在内存空间.优点是可以提供快速的数据访问;缺点是数据无法分布式共享,无容错处理.典型的,如Cache4j，guavaCache  
+    * 本地缓存数据过期-续期解决hotkey击穿到DB问题
+      * 为了解决这样的击穿问题，这里加了一个过期时间续期的操作。当多个线程并发读取某个key1时，第一个竞争到锁的线程会判断key的过期时间，如果已经过期，则返回null，并对该key续期（即延长过期时间），由于返回的是null，该线程会击穿Localcache继续向server发起请求，并更新本地Localcache。其他线程访问key时，已经是续期之后，这些线程的访问该key时，就不会发现已经过期，读到的是老的value，等到第一个线程完成server端key-value到Localcache的更新结束后，所有线程都将读到新value。这样的好处是不会在某个key过期时间一到就击穿Localcache，并大量的访问server，对server造成压力。
+      * 如图，只有thread-1会击穿Localcache，其他线程拿到的要么是老的value，要么是最新value。
+      * ![](http://i.imgur.com/5pjpzsp.png) 
+      
   * 分布式缓存-nosql
     * 数据在固定数目的集群节点间分布存储.优点是缓存容量可扩展(静态扩展);缺点是扩展过程中需要大量配置
     * tair
     * memberCache
 
   * 分布式缓存与NoSQL
-    * 半结构化数据， 
+    * 半结构化数据，  
 
 ##
 ###5.WebSocket 
@@ -341,6 +346,7 @@
       throw new IllegalArgumentException();
     }
   }
+
   * 好处，不用点击进入到方法内部就可以直接看到不合法参数的界限。 
   
 ##
@@ -362,4 +368,10 @@
     * 热线（hotLineCS）
        * 
     * OMS（payment）
-       *    
+
+##
+###需要研究技术
+ * zookeeper
+ * 分布式计算（jstrom， spark）
+ * 
+         
