@@ -363,8 +363,11 @@
 ##
 ###NoSql（key-value）
   * redis
+     * 需要学习 
   * MongDb
+     * 需要学习 
   * Tair
+     * 需要学习 
 
 
 ###12. 示例
