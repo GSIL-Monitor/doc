@@ -138,7 +138,7 @@
          * 程序计数器
          * 线程栈
          * 本地方法栈    
-     * 内存监控--jstack--jmap--jstat   
+     * 内存监控--jstack--jmap--jstat
  * ####3.3 日志框架学习
    * apache--common.logging----avalon(framework) 
  * ####3.4 定时功能
