@@ -110,7 +110,10 @@
    
   * java 文件锁 
     * FileLock类
-  
+    * 
+  * #### 'java 锁以及优化'
+  	* 重点关注
+  	
   * CAS(Compare-And-Swap)  
 
 
@@ -124,6 +127,17 @@
      * 方法
         *   
    * 内存管理
+     * 内存运行期环境
+       * 线程共享
+         * 方法区（已经被加载class文件方法）
+         * java 堆区 （存放几乎所有JVM线程对象实例）
+          * new区 （eden -servie0 -- service1） ----YGC
+          * old区   --FGC（Stop the world）
+          * Permanent区（perm区）（加载新类时才会导致，存放class 和meta信息， 放射数据在这里） 
+       * 线程私有
+         * 程序计数器
+         * 线程栈
+         * 本地方法栈    
      * 内存监控--jstack--jmap--jstat   
  * ####3.3 日志框架学习
    * apache--common.logging----avalon(framework) 
@@ -179,8 +193,10 @@
       
   * 分布式缓存-nosql
     * 数据在固定数目的集群节点间分布存储.优点是缓存容量可扩展(静态扩展);缺点是扩展过程中需要大量配置
+    
     * tair
-    * memberCache
+    
+    * redis
 
   * 分布式缓存与NoSQL
     * 半结构化数据，  
@@ -400,5 +416,5 @@
 ###需要研究技术
  * zookeeper mapreduce hadoop odps 
  * 分布式计算（jstrom， spark）
- * 
+ * 并发编程 
          
