@@ -37,7 +37,7 @@
 ##
 
 ###3.基础知识
- * ####3.1 java
+* ####3.1 java
    * 反射 --JAVA反射机制是在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方法；对于任意一个对象，都能够调用它的任意一个方法；这种动态获取的信息以及动态调用对象的方法的功能称为java语言的反射机制。 
      * 在运行时判断任意一个对象所属的类；
      * 在运行时构造任意一个类的对象；
@@ -84,7 +84,7 @@
      * 既然都不是java，那就别管它的源代码了，我们只需要知道这个方法已经被实现即可。
      * native的意思就是通知操作系统， 这个函数你必须给我实现，因为我要使用。 所以native关键字的函数都是操作系统实现的， java只能调用。
      * java是跨平台的语言，既然是跨了平台，所付出的代价就是牺牲一些对底层的控制，而java要实现对底层的控制，就需要一些其他语言的帮助，这个就是native的作用了
-   * Java多线程
+* Java多线程
      * 线程池
         * 
      * ThreadLocal  
@@ -94,13 +94,20 @@
         * 解决问题：
           * 解决非线程安全对象的并发线程安全---私有-静态-ThreadLocal<>-变量
           * ![](http://i.imgur.com/XjoGR7x.jpg)  
-   * 事务 （ACID）
+     * 线程同步（JUC---CAS）
+       *  synchronized 发展史
+       *  Thread.sleep() ----  Object.wait() 调用后线程处于阻塞/等待/睡眠
+           * sleep 静态方法，一直持有对象锁
+           * wait() 非静态方法，调用后放弃当前对象锁 
+       * Thread.yield()静态方法
+          * 当前线程让出执行权限，进入可执行队列， 让调度器重新调度（可能再次被选中）  
+* 事务 （ACID）
      * 原子 ---事务执行原子性（要么执行成功， 要么全部撤销）
      * 一致 ---
      * 隔离 ---事务之间是隔离的。
      * 持久 ---  
    
-  * JDK基础 
+* JDK基础 
      * ConcurrentHashMap ---- （高并发，线程安全）
          * nulls aren't allowed in ConcurrentMaps key or value 
          * 基于java内存模型实现
@@ -111,13 +118,15 @@
   * java 文件锁 
     * FileLock类
     * 
-  * #### 'java 锁以及优化'
-  	* 重点关注
+* #### 'java 锁以及优化'
+  	
+     * 重点关注
+     * 分布式锁 
   	
   * CAS(Compare-And-Swap)  
 
 
- * #### 3.2 JVM知识
+* #### 3.2 JVM知识
    * java平台
      * JDK--JRE--
    * JVM调优
@@ -139,18 +148,23 @@
          * 线程栈
          * 本地方法栈    
      * 内存监控--jstack--jmap--jstat
- * ####3.3 日志框架学习
+     
+* ####3.3 日志相关||框架
+   *  flume--kafka
+     * 日志或者数据采集框架（重点关注）
+    
    * apache--common.logging----avalon(framework) 
- * ####3.4 定时功能
+
+* ####3.4 定时功能
    * Spring + Quartz定时框架
      * cron 表达式 
    * JDk timer + timeTask  
- * ####3.5 系统监控管理|报警
+* ####3.5 系统监控管理|报警
  
- * ####3.6  Spring MVC 框架搭建---调优
+* ####3.6  Spring MVC 框架搭建---调优
    * 框架搭建工作流程
    * 系统瓶颈， 优化过程
- * ####3.7 Spring
+* ####3.7 Spring
    * Springbean--singleton 和java单例区别
      *  Spring  单例只是指spring只会给你提供一个单例bean对象。也就是通过context.getBean("")永远只能拿到相同的bean实例。
      *  java单例是JVM层面的概念，class单例，是指在jvm中永远只能有一个实例。
@@ -179,7 +193,7 @@
         * ContextLoaderListener：Spring MVC在Web容器中的启动类，负责Spring IoC容器在Web上下文中的初始化。
         * 3，Spring MVC启动过程大致分为两个过程：1、ContextLoaderListener初始化，实例化IoC容器，并将此容器实例注册到ServletContext中。2、DispatcherServlet初始化。
 
- * ####3.8fastJson
+* ####3.8fastJson
    * 序列化--反序列化
    * 速度优势 
 ##
@@ -315,7 +329,6 @@
     * 乐观锁 
       * 假设并发冲突较少，最后提交数据更新时才会锁数据，不能解决数据脏读。
       * 加锁时间较短，
-
 ##
 ###9.FrontEnd
   * leilei_okk@163.com
@@ -417,4 +430,12 @@
  * zookeeper mapreduce hadoop odps 
  * 分布式计算（jstrom， spark）
  * 并发编程 
+
+ * CAS
+   * java锁的发展史，为啥lock锁比较快， 不让操作系统调度该线程，减少线程切换的开销。
+   * 
+ * nio
+   * 使用react 模式, 多路复用方式实现，一个监控其他线程状态，并提供给线程notify的通知
+   * 使用linux的  select（轮训）--》 poll（线程发生变化）---》 epoll（状态发生变化）新的方案都在逐步减少通知的次数,(实际就是减少线程被唤醒的次数， 减少操作系统调度次数和上下文切换次数) 
+   
          
