@@ -94,6 +94,9 @@
         * 解决问题：
           * 解决非线程安全对象的并发线程安全---私有-静态-ThreadLocal<>-变量
           * ![](http://i.imgur.com/XjoGR7x.jpg)  
+        * 一般需要处理 private static final ThreadLocal<T> ...
+          * final 是必须的， 因为需要防止被new一个对象重新赋值。
+            
      * 线程同步（JUC---CAS）
        *  synchronized 发展史
        *  Thread.sleep() ----  Object.wait() 调用后线程处于阻塞/等待/睡眠
@@ -176,6 +179,10 @@
      *  Spring  单例只是指spring只会给你提供一个单例bean对象。也就是通过context.getBean("")永远只能拿到相同的bean实例。
      *  java单例是JVM层面的概念，class单例，是指在jvm中永远只能有一个实例。
        * 另外，所有属性都是static的类，在意义上基本属于单例模式。 
+   * SpringBean 多线程安全问题
+     *  Spring框架中单例bean 的线程安全问题 
+     * （Spring）单例优势 
+       * 单例能保证程序中这个实例是唯一的，减少java的内存回收，所以性能高
    * IOC
      * bean factory生成，
    * AOP
