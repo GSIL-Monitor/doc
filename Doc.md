@@ -122,10 +122,17 @@
   	
      * 重点关注
      * 分布式锁 
-  	
-  * CAS(Compare-And-Swap)  
+     
+     * CAS(Compare-And-Swap)
 
-
+* ### 'String-StringBuffer-StringBuild'
+  * String
+    * 不可变对象，操作是需要new一个新的对象进行操作，这种无引用对象过多会导致JVM出现GC  
+  * StringBuffer
+    * 线程安全（使用synchronized）速度较快
+  * StringBuild
+    * 速度最快(StringBuild > StringBuffer > String)
+    
 * #### 3.2 JVM知识
    * java平台
      * JDK--JRE--
@@ -149,22 +156,22 @@
          * 本地方法栈    
      * 内存监控--jstack--jmap--jstat
      
-* ####3.3 日志相关||框架
+* #### 3.3 日志相关||框架
    *  flume--kafka
      * 日志或者数据采集框架（重点关注）
     
    * apache--common.logging----avalon(framework) 
 
-* ####3.4 定时功能
+* #### 3.4 定时功能
    * Spring + Quartz定时框架
      * cron 表达式 
    * JDk timer + timeTask  
-* ####3.5 系统监控管理|报警
+* #### 3.5 系统监控管理|报警
  
-* ####3.6  Spring MVC 框架搭建---调优
+* #### 3.6  Spring MVC 框架搭建---调优
    * 框架搭建工作流程
    * 系统瓶颈， 优化过程
-* ####3.7 Spring
+* #### 3.7 Spring
    * Springbean--singleton 和java单例区别
      *  Spring  单例只是指spring只会给你提供一个单例bean对象。也就是通过context.getBean("")永远只能拿到相同的bean实例。
      *  java单例是JVM层面的概念，class单例，是指在jvm中永远只能有一个实例。
@@ -193,7 +200,7 @@
         * ContextLoaderListener：Spring MVC在Web容器中的启动类，负责Spring IoC容器在Web上下文中的初始化。
         * 3，Spring MVC启动过程大致分为两个过程：1、ContextLoaderListener初始化，实例化IoC容器，并将此容器实例注册到ServletContext中。2、DispatcherServlet初始化。
 
-* ####3.8fastJson
+* #### 3.8fastJson
    * 序列化--反序列化
    * 速度优势 
 ##
@@ -254,7 +261,7 @@
        * 大流量应用，session占用内存问题
        * 解决方法： TaoBao 把session直接存储在Tire中（分布式缓存），为了容灾，对session加密存储在cookie中， 只有当分布式缓存故障时才会使用这部分session数据。   
 
-###7.Linux--（服务器相关知识）
+### 7.Linux--（服务器相关知识）
   * shell脚本
      * 熟悉， 可以自己写一些自动化工具 
      * grep 
@@ -279,7 +286,7 @@
        * linux 中一切都是文件，设备（dev）网络（socket）等都是文件，而要使用这个功能，就需要打开文件，打开文件的过程，就是建立进程和文件关系的过程, 而句柄就是唯一标识这种关系的元数据。（对文件的操作就是对句柄的操作） 
 
 ##
-###8.数据库相关
+### 8.数据库相关
   * 分布式数据存储
      * 关键点： 数据切分 && 数据冗余
      
@@ -330,7 +337,7 @@
       * 假设并发冲突较少，最后提交数据更新时才会锁数据，不能解决数据脏读。
       * 加锁时间较短，
 ##
-###9.FrontEnd
+### 9.FrontEnd
   * leilei_okk@163.com
   * 浏览器
      * 浏览器的线程模型： 浏览器的内核是多线程的，它们在内核制控下相互配合以保持同步，一个浏览器有5个常驻线程：
@@ -383,14 +390,14 @@
   * 好处，不用点击进入到方法内部就可以直接看到不合法参数的界限。 
 
 ##
-###MySql（关系型数据库）
+### MySql（关系型数据库）
   * [很不错的文章](http://www.itdadao.com/articles/c15a1145261p0.html)
   * Mysql 分库分表
   * Mysql 读写分离（主从复制技术）
   *
  
 ##
-###NoSql（key-value）
+### NoSql（key-value）
   * redis
      * 需要学习 
   * MongDb
@@ -399,12 +406,12 @@
      * 需要学习 
 
 
-###12. 示例
+### 12. 示例
   * 数据驱动产品的例子
     * linkin 分析大部分用户来自google搜索简历， -->提示用户完善简历，增加推广效应
     *  
 
-###13. Project
+### 13. Project
   * Hecla 人员账号平台迁移 （技术PM 项目贡献度：90%  项目周期：2016-5-12/2016-08-30)
     * 项目简介： Hecla账号系统是阿里集团客户服务事业群通用账号组织结构，由于平台变更需要对原账号数据进行兼容性迁移，系统维护150万为阿里工作的小二账号（SP合作，云客服），组织结构关系，角色，权限等数据表。涉及总共2亿左右数据（12张表），数据量40G左右， 依赖应用29个，项目周期(2016-5-12/2016-08-30)
     * 主要解决问题
