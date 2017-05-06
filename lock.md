@@ -1,4 +1,5 @@
-#### JAVA锁
+### JAVA资源竞争问题
+####Java锁
  * 锁产生的原因： 多线程需要共享访问资源（实例资源， Class资源， 其他共享资源）
  * JUC--java.util.concurrent 包
    * 基于CAS 模式进行封装 unsafe（this,offset, expect, update） nataive方法 
@@ -23,4 +24,10 @@
   * 用synchronized来加锁的1个好处，方法抛异常的时候，锁仍然可以由JVM来自动释放。
 
 #####可重入锁
-*   
+* 
+
+####JAVA信号量
+* 
+
+####不得不说的问题 AQS（AbstractQueuedSynchronizer）
+* [参考文章链接地址](http://blog.csdn.net/pfnie/article/details/53191892)  
