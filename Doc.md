@@ -204,18 +204,18 @@
    * Spring Mvc 启动过程
      * 一切从servletContext开始， 先把ApplicationContext初始化好作为root扔进去 ，再用它作为父context创造各个DispatcherServlet， 并扔进servletContext，至此创造了整个世界。
       
-     * 1 ，应用启动时通过contextloadListenser   初始化ApplicationContext（全应用都可见）
+   * 1 ，应用启动时通过contextloadListenser   初始化ApplicationContext（全应用都可见）
         * 通过web.xml 配置 context-param 完成context加载。
         * ApplicationContext接口是通过XmlApplicationContext 使用XmlBeanFactory完成Bean上下文加载
         * 加载处理ServletContext数据 
         * 通过web.xml 配置的servlet以及已经完成加载的 ApplicationContext（作为父上下文） 完成每一个ServletContext 的加载。 
-        * 2，以Tomcat为例，想在Web容器中使用Spirng MVC，必须进行四项的配置：
+   * 2，以Tomcat为例，想在Web容器中使用Spirng MVC，必须进行四项的配置：
         * 修改web.xml，添加servlet定义、编写servletname-servlet.xml（ servletname是在web.xm中配置DispactherServlet时使servlet-name的值） 、配置contextConfigLocation初始化参数、配置ContextLoaderListerner
         * DispatcherServlet：前端处理器，接受的HTTP请求和转发请求的类。
         * court-servlet.xml:定义WebAppliactionContext上下文中的bean。
         * contextConfigLocation：指定Spring IoC容器需要读取的定义了非web层的Bean（DAO/Service）的XML文件路径。
         * ContextLoaderListener：Spring MVC在Web容器中的启动类，负责Spring IoC容器在Web上下文中的初始化。
-        * 3，Spring MVC启动过程大致分为两个过程：1、ContextLoaderListener初始化，实例化IoC容器，并将此容器实例注册到ServletContext中。2、DispatcherServlet初始化。
+   * 3，Spring MVC启动过程大致分为两个过程：1、ContextLoaderListener初始化，实例化IoC容器，并将此容器实例注册到ServletContext中。2、DispatcherServlet初始化。
 
 * #### 3.8fastJson
    * 序列化--反序列化
@@ -338,9 +338,9 @@
   * SQL
     * 批量接口iterate
     *   
-  * 事务
-    * 切面级支持
-    * Spring事务
+  * 事务隔离级别
+    * RC
+    * RR
   * 锁 （同时读和写，或者同时写才会产生冲突）
     * 数据库锁
       * 共享锁S  
@@ -350,7 +350,7 @@
          * update
          * delete 
     * Mysql 锁粒度 
-      * 表锁  页锁  行锁  
+      * 表锁  页锁  行锁   S锁（共享锁）  X锁（排它锁） GAP锁
     * 悲观锁
       * 假设并发冲突概率较高，任何操作都会影响你的数据， 从开始准备操作数据加锁----- 最后数据提交释放锁
       * 加锁时间较长，

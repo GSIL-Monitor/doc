@@ -4,7 +4,7 @@
  * JUC--java.util.concurrent 包
    * 基于CAS 模式进行封装 unsafe（this,offset, expect, update） nataive方法 
 
-##### synchronized（对象锁，类锁）
+##### synchronized（对象锁，类锁） monitor
 
 * Java的所有对象都含有1个互斥锁，这个锁由JVM自动获取和释放。线程进入synchronized方法的时候获取该对象的锁，当然如果已经有线程获取了这个对象的锁，那么当前线程会等待；synchronized方法正常返回或者抛异常而终止，JVM会自动释放对象锁。
 
